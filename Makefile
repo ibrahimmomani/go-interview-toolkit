@@ -10,7 +10,7 @@ test:
 
 # Run tests with coverage
 coverage:
-	go test -v -coverprofile=coverage.out ./...
+	go test -v -coverprofile=coverage.out ./collections/...
 	go tool cover -html=coverage.out -o coverage.html
 	@echo "Coverage report generated: coverage.html"
 

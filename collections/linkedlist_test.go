@@ -429,6 +429,45 @@ func BenchmarkGet(b *testing.B) {
 	}
 }
 
+func TestGetNode(t *testing.T) {
+	ll := FromSlice([]int{10, 20, 30})
+
+	tests := []struct {
+		name      string
+		index     int
+		expected  int
+		expectErr bool
+	}{
+		{"get first node", 0, 10, false},
+		{"get middle node", 1, 20, false},
+		{"get last node", 2, 30, false},
+		{"invalid negative", -1, 0, true},
+		{"invalid large", 3, 0, true},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			node, err := ll.GetNode(tt.index)
+
+			if tt.expectErr {
+				if err == nil {
+					t.Error("expected error but got none")
+				}
+				return
+			}
+
+			if err != nil {
+				t.Errorf("unexpected error: %v", err)
+				return
+			}
+
+			if node.Value != tt.expected {
+				t.Errorf("expected %d, got %d", tt.expected, node.Value)
+			}
+		})
+	}
+}
+
 func BenchmarkFind(b *testing.B) {
 	ll := NewLinkedList[int]()
 	for i := 0; i < 1000; i++ {
