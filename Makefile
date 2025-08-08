@@ -1,5 +1,5 @@
 # Makefile
-.PHONY: test build clean fmt vet lint coverage help
+.PHONY: test build clean fmt vet coverage help
 
 # Default target
 all: fmt vet test
@@ -32,10 +32,6 @@ fmt:
 vet:
 	go vet ./...
 
-# Run golint (requires golint to be installed)
-lint:
-	golint ./...
-
 # Clean build artifacts
 clean:
 	rm -rf bin/
@@ -59,7 +55,6 @@ help:
 	@echo "  run-examples - Build and run example applications"
 	@echo "  fmt          - Format code"
 	@echo "  vet          - Run go vet"
-	@echo "  lint         - Run golint"
 	@echo "  clean        - Clean build artifacts"
 	@echo "  bench        - Run benchmarks"
 	@echo "  deps         - Install and tidy dependencies"

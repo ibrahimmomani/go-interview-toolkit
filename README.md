@@ -1,9 +1,4 @@
-[![CI](https://github.com/ibrahimmmomani/go-interview-toolkit/actions/workflows/ci.yml/badge.svg)](https://github.com/ibrahimmmomani/go-interview-toolkit/actions)
-[![Go Report Card](https://goreportcard.com/badge/github.com/ibrahimmmomani/go-interview-toolkit)](https://goreportcard.com/report/github.com/ibrahimmmomani/go-interview-toolkit)
-[![codecov](https://codecov.io/gh/ibrahimmmomani/go-interview-toolkit/branch/main/graph/badge.svg)](https://codecov.io/gh/ibrahimmmomani/go-interview-toolkit)
-[![Go Reference](https://pkg.go.dev/badge/github.com/ibrahimmmomani/go-interview-toolkit.svg)](https://pkg.go.dev/github.com/ibrahimmmomani/go-interview-toolkit)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-# Go Interview Toolkit
+# Golang Interview Kit
 
 A comprehensive, production-quality collection of data structures and algorithms for technical interviews, implemented in Go with full generic type support.
 
