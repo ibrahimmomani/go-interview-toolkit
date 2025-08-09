@@ -19,6 +19,7 @@ build:
 	mkdir -p bin
 	go build -o bin/linkedlist_demo ./examples/linkedlist/
 	go build -o bin/stack_demo ./examples/stack/
+	go build -o bin/queue_demo ./examples/queue/
 
 # Format code
 fmt:
@@ -35,7 +36,7 @@ clean:
 
 # Run benchmarks (only LinkedList and Stack)
 bench:
-	go test -bench=BenchmarkAppend -bench=BenchmarkPrepend -bench=BenchmarkPush -bench=BenchmarkPop -benchmem ./collections
+	go test -bench=. -benchmem ./collections/...
 
 # Install dependencies
 deps:
@@ -49,6 +50,9 @@ run-examples: build
 	@echo "\n===========================================\n"
 	@echo "Running Stack demo:"
 	./bin/stack_demo
+	@echo "\n===========================================\n"
+	@echo "Running Queue demo:"
+	./bin/queue_demo
 
 # Run individual examples
 run-linkedlist: build
@@ -57,12 +61,16 @@ run-linkedlist: build
 run-stack: build
 	./bin/stack_demo
 
+run-queue: build
+	./bin/queue_demo
+
 # Check if examples compile without building (only LinkedList and Stack)
 check-examples:
 	@echo "Checking if LinkedList and Stack examples compile..."
 	go build -o /dev/null ./examples/linkedlist/
 	go build -o /dev/null ./examples/stack/
-	@echo "LinkedList and Stack examples compile successfully!"
+	go build -o /dev/null ./examples/queue/
+	@echo "LinkedList, Stack and Queue examples compile successfully!"
 
 # Test specific data structures
 test-linkedlist:
@@ -71,12 +79,8 @@ test-linkedlist:
 test-stack:
 	go test -v ./collections -run "TestStack"
 
-# Benchmark specific data structures
-bench-linkedlist:
-	go test -bench=BenchmarkAppend -bench=BenchmarkPrepend -bench=BenchmarkGet -bench=BenchmarkFind -benchmem ./collections
-
-bench-stack:
-	go test -bench=BenchmarkPush -bench=BenchmarkPop -bench=BenchmarkPeek -benchmem ./collections
+test-queue:
+	go test -v ./collections -run "TestQueue"
 
 # Help
 help:
@@ -84,14 +88,14 @@ help:
 	@echo "  test                  - Run LinkedList and Stack tests"
 	@echo "  test-linkedlist       - Run LinkedList tests only"
 	@echo "  test-stack            - Run Stack tests only"
+	@echo "  test-queue            - Run Queue tests only"
 	@echo "  coverage              - Run tests with coverage report"
 	@echo "  build                 - Build LinkedList and Stack examples"
 	@echo "  run-examples          - Run LinkedList and Stack demos"
 	@echo "  run-linkedlist        - Run LinkedList demo only"
 	@echo "  run-stack             - Run Stack demo only"
+	@echo "  run-queue             - Run Queue demo only"
 	@echo "  bench                 - Run basic benchmarks for both"
-	@echo "  bench-linkedlist      - Run LinkedList benchmarks"
-	@echo "  bench-stack           - Run Stack benchmarks"
 	@echo "  check-examples        - Check if examples compile"
 	@echo "  fmt                   - Format code"
 	@echo "  vet                   - Run go vet"

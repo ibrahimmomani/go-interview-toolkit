@@ -20,12 +20,12 @@ A comprehensive, production-quality collection of data structures and algorithms
 - **Features**: Head/tail pointers for O(1) operations, reverse capability
 - **Use Cases**: Dynamic insertion/deletion, when array resizing is expensive
 
-#### 2. Stack (Coming soon)
+#### 2. Stack 
 - **Operations**: Push, Pop, Peek, MultiPush, MultiPop
 - **Features**: LIFO behavior, dynamic resizing, capacity optimization
 - **Use Cases**: DFS, expression evaluation, backtracking, balanced parentheses
 
-#### 3. Queue (Coming soon)
+#### 3. Queue
 - **Operations**: Enqueue, Dequeue, Front, Rear, MultiEnqueue, MultiDequeue
 - **Features**: FIFO behavior, circular buffer implementation, auto-resizing  
 - **Use Cases**: BFS, level-order traversal, sliding window, process scheduling
@@ -42,18 +42,6 @@ A comprehensive, production-quality collection of data structures and algorithms
 git clone https://github.com/ibrahimmomani/go-interview-toolkit
 cd go-interview-toolkit
 go mod tidy
-```
-
-### Basic Usage
-```go
-import "github.com/ibrahimmomani/go-interview-toolkit/collections"
-
-func main() {
-    // LinkedList
-    list := collections.NewLinkedList[int]()
-    list.Append(1)
-    list.Append(2)
-}
 ```
 
 ## 🧪 Testing & Building
@@ -79,31 +67,6 @@ make fmt
 
 # Clean build artifacts
 make clean
-```
-
-## 📊 Performance Characteristics
-
-| Data Structure | Access | Search | Insertion | Deletion | Space |
-|---------------|--------|--------|-----------|----------|-------|
-| LinkedList    | O(n)   | O(n)   | O(1)*     | O(1)*    | O(n)  |
-
-*\* At head/tail for LinkedList*
-
-## 🎯 Interview Problem Examples
-
-Each data structure includes demo code showing how to use.
-
-## 🏗 Project Structure
-
-```
-go-interview-toolkit/
-├── collections/              # Linear data structures
-│   ├── linkedlist.go        # Singly linked list
-│   └── *_test.go            # Comprehensive tests
-├── examples/                # Usage demonstrations
-│   ├── linkedlist_demo.go
-├── Makefile                 # Build automation
-└── README.md
 ```
 
 
@@ -147,7 +110,3 @@ MIT License - see LICENSE file for details.
 **Comprehensive**: From basic operations to advanced algorithmic patterns
 
 **Performant**: Optimized implementations with proper complexity characteristics
-
----
-
-*Built with ❤️ for the Go community and interview preparation*
