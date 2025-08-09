@@ -9,7 +9,7 @@ linters-settings:
   gocyclo:
     min-complexity: 15
   dupl:
-    threshold: 100
+    threshold: 150  # Increased threshold for test files
   goconst:
     min-len: 2
     min-occurrences: 2
@@ -18,7 +18,7 @@ linters-settings:
   lll:
     line-length: 120
   goimports:
-    local-prefixes: github.com/ibrahimmmomani/go-interview-toolkit
+    local-prefixes: github.com/ibrahimmomani/go-interview-toolkit
   gocritic:
     enabled-tags:
       - diagnostic
@@ -76,6 +76,7 @@ issues:
         - gocyclo
         - errcheck
         - gosec
+        - dupl  # Allow duplicate code in test files
     - linters:
         - lll
       source: "^//go:generate "

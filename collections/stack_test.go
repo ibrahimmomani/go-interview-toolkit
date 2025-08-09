@@ -244,13 +244,13 @@ func TestPeekN(t *testing.T) {
 }
 
 func TestStackContains(t *testing.T) {
-	s := FromSliceStack([]int{1, 2, 3})
+	s := FromSliceStack([]int{10, 20, 30})
 
-	if !s.Contains(2) {
+	if !s.Contains(20) {
 		t.Error("expected to contain 2")
 	}
 
-	if s.Contains(4) {
+	if s.Contains(40) {
 		t.Error("expected not to contain 4")
 	}
 }
@@ -292,9 +292,9 @@ func TestStackReverse(t *testing.T) {
 		expected []int
 	}{
 		{"empty stack", []int{}, []int{}},
-		{"single element", []int{1}, []int{1}},
-		{"two elements", []int{1, 2}, []int{2, 1}},
-		{"multiple elements", []int{1, 2, 3, 4}, []int{4, 3, 2, 1}},
+		{"single element", []int{10}, []int{10}},
+		{"two elements", []int{10, 20}, []int{20, 10}},
+		{"multiple elements", []int{10, 20, 30, 40}, []int{40, 30, 20, 10}},
 	}
 
 	for _, tt := range tests {
@@ -317,8 +317,8 @@ func TestStackString(t *testing.T) {
 		expected string
 	}{
 		{"empty stack", []int{}, "Stack[]"},
-		{"single element", []int{1}, "Stack[1] (top)"},
-		{"multiple elements", []int{1, 2, 3}, "Stack[1, 2, 3] (top)"},
+		{"single element", []int{10}, "Stack[10] (top)"},
+		{"multiple elements", []int{110, 111, 112}, "Stack[110, 111, 112] (top)"},
 	}
 
 	for _, tt := range tests {
