@@ -5,6 +5,15 @@ import (
 	"strings"
 )
 
+const (
+	// DefaultInitialCapacity is the default initial capacity for queues
+	DefaultInitialCapacity = 4
+	// ShrinkFactor determines when to shrink the queue (when size == capacity/ShrinkFactor)
+	ShrinkFactor = 4
+	// GrowthFactor determines how much to grow the capacity
+	GrowthFactor = 2
+)
+
 // Queue represents a First-In-First-Out (FIFO) data structure with generic type support.
 // Implemented using a circular buffer with dynamic resizing for optimal performance.
 type Queue[T any] struct {
@@ -17,7 +26,7 @@ type Queue[T any] struct {
 // NewQueue creates and returns a new empty queue.
 func NewQueue[T any]() *Queue[T] {
 	return &Queue[T]{
-		items: make([]T, 4), // Start with small capacity
+		items: make([]T, DefaultInitialCapacity), // Start with small capacity
 		front: 0,
 		rear:  0,
 		size:  0,
@@ -41,8 +50,8 @@ func NewQueueWithCapacity[T any](capacity int) *Queue[T] {
 // The first element of the slice becomes the front of the queue.
 func FromSliceQueue[T any](slice []T) *Queue[T] {
 	capacity := len(slice)
-	if capacity < 4 {
-		capacity = 4
+	if capacity < DefaultInitialCapacity {
+		capacity = DefaultInitialCapacity
 	}
 
 	q := &Queue[T]{
@@ -85,7 +94,7 @@ func (q *Queue[T]) Dequeue() (T, error) {
 	q.size--
 
 	// Shrink if queue is 1/4 full and capacity > 4
-	if q.size > 0 && q.size == len(q.items)/4 && len(q.items) > 4 {
+	if q.size > 0 && q.size == len(q.items)/ShrinkFactor && len(q.items) > ShrinkFactor {
 		q.resize()
 	}
 
@@ -298,10 +307,10 @@ func (q *Queue[T]) resize() {
 	var newCapacity int
 	if q.size == len(q.items) {
 		// Double when full
-		newCapacity = len(q.items) * 2
+		newCapacity = len(q.items) * GrowthFactor
 	} else {
 		// Halve when 1/4 full
-		newCapacity = len(q.items) / 2
+		newCapacity = len(q.items) / GrowthFactor
 	}
 
 	newItems := make([]T, newCapacity)
