@@ -17,12 +17,17 @@ coverage:
 # Build examples
 build:
 	mkdir -p bin
-	go build -o bin/linkedlist_demo ./examples/linkedlist_demo.go
+	go build -v -o bin/linkedlist_demo ./examples/linkedlist_demo.go
+	go build -v -o bin/stack_demo ./examples/stack_demo.go
+
 
 # Run examples
 run-examples: build
 	@echo "Running LinkedList demo:"
 	./bin/linkedlist_demo
+	@echo "\nRunning Stack demo:"
+	./bin/stack_demo
+
 
 # Format code
 fmt:
