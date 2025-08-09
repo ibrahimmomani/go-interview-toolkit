@@ -20,6 +20,7 @@ build:
 	go build -o bin/linkedlist_demo ./examples/linkedlist/
 	go build -o bin/stack_demo ./examples/stack/
 	go build -o bin/queue_demo ./examples/queue/
+	go build -o bin/deque_demo ./examples/deque/
 
 # Format code
 fmt:
@@ -53,6 +54,9 @@ run-examples: build
 	@echo "\n===========================================\n"
 	@echo "Running Queue demo:"
 	./bin/queue_demo
+	@echo "\n===========================================\n"
+	@echo "Running Deque demo:"
+	./bin/deque_demo
 
 # Run individual examples
 run-linkedlist: build
@@ -64,13 +68,16 @@ run-stack: build
 run-queue: build
 	./bin/queue_demo
 
+run-deque: build
+	./bin/deque_demo
+
 # Check if examples compile without building (only LinkedList and Stack)
 check-examples:
 	@echo "Checking if LinkedList and Stack examples compile..."
 	go build -o /dev/null ./examples/linkedlist/
 	go build -o /dev/null ./examples/stack/
 	go build -o /dev/null ./examples/queue/
-	@echo "LinkedList, Stack and Queue examples compile successfully!"
+	@echo "LinkedList, Stack, Queue and Deque examples compile successfully!"
 
 # Test specific data structures
 test-linkedlist:
@@ -82,6 +89,9 @@ test-stack:
 test-queue:
 	go test -v ./collections -run "TestQueue"
 
+test-deque:
+	go test -v ./collections -run "TestDeque"
+
 # Help
 help:
 	@echo "Available targets (LinkedList and Stack only):"
@@ -89,12 +99,14 @@ help:
 	@echo "  test-linkedlist       - Run LinkedList tests only"
 	@echo "  test-stack            - Run Stack tests only"
 	@echo "  test-queue            - Run Queue tests only"
+	@echo "  test-deque            - Run Deque tests only"
 	@echo "  coverage              - Run tests with coverage report"
 	@echo "  build                 - Build LinkedList and Stack examples"
 	@echo "  run-examples          - Run LinkedList and Stack demos"
 	@echo "  run-linkedlist        - Run LinkedList demo only"
 	@echo "  run-stack             - Run Stack demo only"
 	@echo "  run-queue             - Run Queue demo only"
+	@echo "  run-deque             - Run Deque demo only"
 	@echo "  bench                 - Run basic benchmarks for both"
 	@echo "  check-examples        - Check if examples compile"
 	@echo "  fmt                   - Format code"
